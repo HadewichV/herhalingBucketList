@@ -8,11 +8,18 @@
             <Color x:Key="ColorPrimary">#2196F3</Color>
             <Color x:Key="ColorSecundary">#1976D2</Color>
             <Color x:Key="ColorAccent">#ffffff</Color>
+            <Color x:Key="ColorError">#f46842</Color>
+            
             <!--On Platform Resources-->
             <OnPlatform x:Key="DefaultThickness" x:TypeArguments="Thickness">
                 <On Platform="iOS" Value="15"></On>
                 <On Platform="Android" Value="20"></On>
                 <On Platform="Windows, UWP" Value="10"></On>
+            </OnPlatform>
+
+            <OnPlatform x:Key="ErrorMessageFontSize" x:TypeArguments="NamedSize">
+                <On Platform="iOS, Android" Value="Small"></On>
+                <On Platform="Windows, UWP" Value="Micro"></On>
             </OnPlatform>
             <!-- Explicit Styles -->
             <Style x:Key="MainLayout" TargetType="StackLayout">
@@ -22,13 +29,23 @@
                 <Setter Property="TextColor" Value="{StaticResource ColorAccent}" />
                 <Setter Property="BackgroundColor" Value="{StaticResource ColorPrimary}" />
             </Style>
+
+            <Style x:Key="ErrorMessage" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource ColorError}"/>
+                <Setter Property="FontSize" Value="{StaticResource ErrorMessageFontSize}"/>
+                <Setter Property="Margin" Value="2,-5,7,0"/>
+                <Setter Property="IsVisible" Value="False"/>
+            </Style>
+            
             <!--Global, Implicit (= valid for ALL controls of this TargetType)-->
             <!--<Style TargetType="views:BusyView">
                 <Setter Property="BackgroundColor" Value="#ffffff" />
                 <Setter Property="IsVisible" Value="False" />
                 <Setter Property="AbsoluteLayout.LayoutFlags" Value="All" />
                 <Setter Property="AbsoluteLayout.LayoutBounds" Value="0,0,1,1" />
-            </Style>-->            
+            </Style>--> 
+            
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>
