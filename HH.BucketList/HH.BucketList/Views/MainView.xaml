@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:HH.BucketList.Views"
+             x:Class="HH.BucketList.Views.MainView"
+             Title="Bucket Lists">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add List" Clicked="btnAddBucketList_Clicked"></ToolbarItem>
+        <ToolbarItem Text="&#x2699;" Clicked="btnSettings_Clicked"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <StackLayout Style="{StaticResource MainLayout}"
+                         AbsoluteLayout.LayoutFlags="All"
+                        AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <ListView x:Name="lvBucketLists" ItemTapped="LvBucketLists_ItemTapped">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.ContextActions>
+                                    <MenuItem Clicked="MnuBucketEdit_Clicked" CommandParameter="{Binding .}" Text="Edit"/>
+                                    <MenuItem Clicked="MnuBucketDelete_Clicked" CommandParameter="{Binding .}" Text="Delete"/>
+                                </ViewCell.ContextActions>
+                                <StackLayout HeightRequest="50">
+                                    <Label Text="{Binding Title}"
+                                           VerticalOptions="CenterAndExpand"
+                                           HorizontalOptions="StartAndExpand"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <views:BusyView x:Name="busyIndicator"
+                            AbsoluteLayout.LayoutFlags="All"
+                     AbsoluteLayout.LayoutBounds="0,0,1,1"
+                     BackgroundColor="#ffffff"
+                     IsVisible="False"/>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>
